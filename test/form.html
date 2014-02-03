@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form test</title>
+
+<!-- include jQuery -->
+<script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
+
+<script type="text/javascript" src="renewal.js"></script>
+
+<link rel="stylesheet" href="quote-form.css"/>
+
+</head>
+
+<body>
+	<h1>Get a quote</h1>
+	
+	<form id="quoteForm" method="post" action="/app/quote.php" onsubmit="checkFormSubmit();">
+		
+		<fieldset id="form-part-one" class="form-visible">
+			<legend>Select a product from the choices below:</legend>
+			<div class="radchecks">
+				<label class="hide-radio" for="productLoose">
+					<input required type="radio" name="productType" id="productLoose" value="loose" data-next="form-part-two-loose" />
+					<img src="productTypes-loose.png"/>
+					<span class="hide-radio-label">Loose / Pew Envelopes</span>
+				</label>
+				
+				<label class="hide-radio" for="productBoxed">
+					<input type="radio" name="productType" id="productBoxed" value="boxed" data-next="form-part-two-boxed" />
+					<img src="productTypes-boxed.png"/>
+					<span class="hide-radio-label">Annual Supply Boxed Sets</span>
+				</label>
+				
+				<label class="hide-radio" for="productMailed">
+					<input type="radio" name="productType" id="productMailed" value="mailed" data-next="form-part-two-mailed" />
+					<img src="productTypes-mailed.png"/>
+					<span class="hide-radio-label">Periodically Mailed to Members Homes</span>
+				</label>
+				
+				<label class="hide-radio" for="productBooklet">
+					<input type="radio" name="productType" id="productBooklet" value="booklet" data-next="form-part-two-booklet" />
+					<img src="productTypes-booklet.png"/>
+					<span class="hide-radio-label">Booklet Style Tear&#8209;outs Mailable to Church</span>
+				</label>
+			</div>
+
+			<input type="button" id="form-part-one-continue" onclick="formPartOneContinue();" value="Continue" />
+		</fieldset>
+		
+		
+		<!-- LOOSE ENVELOPES PATH -->
+		<div id="form-part-two-loose" class="form-hidden">
+			<h2 class="form-instructions">Choose one of our stock envelopes or choose "Custom" for a different design</h2>
+			<ul id="form-part-two-loose-stock">
+				<li><input type="radio" name="looseStock" id="looseStockGreenDove" value="stockGreenDove" data-next="form-part-three-loose-stock" /><label for="looseStockGreenDove">Welcome Dove Green</label></li>
+				<li><input type="radio" name="looseStock" id="looseStockBlueDove" value="stockBlueDove" data-next="form-part-three-loose-stock" /><label for="looseStockBlueDove">Welcom Dove Blue</label></li>
+				<li><input type="radio" name="looseStock" id="looseStockButterfly" value="stockButterfly" data-next="form-part-three-loose-stock" /><label for="looseStockButterfly">Welcome Butterfly</label></li>
+				<li><input type="radio" name="looseStock" id="looseStockCustom" value="stockCustom" data-next="form-part-three-loose-custom" /><label for="looseStockCustom">Our own custom design</label></li>
+			</ul>
+			<input type="button" id="form-part-two-loose-back" onclick="displayPreviousFormPart();" value="Go Back" />
+			<input type="button" id="form-part-two-loose-continue" onclick="formPartTwoLooseContinue();" value="Continue" />
+		</div>
+		
+			<!-- LOOSE - STOCK ENVELOPES -->
+			<div id="form-part-three-loose-stock" class="form-hidden">
+				<h2 class="form-instructions">Quantity</h2>
+				<input required type="number" min="500" step="500" name="looseStockQty" id="looseStockQty" value="1000" data-next="form-part-contact"/><label for="looseStockQty">Total number of stock envelopes needed</label>
+				<div id="form-part-three-loose-stock-image"></div>
+				<input type="button" id="form-part-two-loose-stock-back" onclick="displayPreviousFormPart();" value="Go Back" />
+				<input type="button" id="form-part-two-loose-stock-continue" onclick="formPartThreeLooseStockContinue();" value="Continue" />
+			</div>
+			
+			<!-- LOOSE - CUSTOM ENVELOPES -->
+			<div id="form-part-three-loose-custom" class="form-hidden">
+				<h2 class="form-instructions">Quantity</h2>
+				<input type="text" name="looseCustomQty" id="looseCustomQty" value="" /><label for="looseCustomQty">Total number of custom envelopes needed</label>
+				<h2 class="form-instructions">Ink</h2>
+				<ul id="form-part-three-loose-custom-ink">
+					<li><input type="radio" name="looseInk" id="looseInkBlack" value="inkBlack" /><label for="looseInkBlack">Black ink only</label></li>
+				</ul>
+				<div id="form-part-three-loose-custom-image"></div>
+				<input type="button" id="form-part-two-loose-custom-back" onclick="displayPreviousFormPart();" value="Go Back" />
+			</div>
+		
+		<!-- END LOOSE ENVELOPES PATH -->
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- UNIVERSAL CONTACT FORM PART -->
+		<div id="form-part-contact" class="form-hidden">
+			<h2 class="form-instructions">Contact Information</h2>
+			<ul id="form-part-contact-one-contact">
+				<li><label for="contactChurch">Church Name:</label><input required type="text" name="contactChurch" id="contactChurch" value="" /></li>
+				<li><label for="contactName">Contact Name:</label><input required type="text" name="contactName" id="contactName" value="" /></li>
+				<li><label for="contactPhone">Contact Phone (555-555-1212):</label><input required type="tel" name="contactPhone" id="contactPhone" value="" /></li>
+				<li><label for="contactFax">Contact Fax (555-555-1212):</label><input type="tel" name="contactFax" id="contactFax" value="" /></li>
+				<li><label for="contactEmail">Contact E-mail:</label><input required type="email" name="contactEmail" id="contactEmail" value="" /></li>
+				<li><label for="contactAddress">Church Address:</label><input required type="text" name="contactAddress" id="contactAddress" value="" /></li>
+				<li><label for="contactCity">Church City:</label><input required type="text" name="contactCity" id="contactCity" value="" /></li>
+				<li><label for="contactState">Church State:</label><input required type="text" list="state-list" name="contactState" id="contactState" value="" /></li>
+				<li><label for="contactZip">Church Zip Code (12345):</label><input required type="text" name="contactZip" id="contactZip" value="" /></li>
+				<li><textarea rows=5 cols=30 id="contactNotes" name="contactNotes"></textarea></li>
+			</ul>
+				<input type="button" id="form-part-contact-back" onclick="displayPreviousFormPart();" value="Go Back" />
+				<input type="submit" id="form-part-contact-submit" value="Get My Quote" />
+				
+			<datalist id="state-list">
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="VA">Virginia</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+			</datalist>
+		</div>
+	</form>
+	
+	
+	
+	
+	
+	
+</body>
+</html>

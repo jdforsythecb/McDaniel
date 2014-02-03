@@ -1,0 +1,482 @@
+<!-- first we include any page-specific style -->
+<link rel="stylesheet" href="/views/quote.css" type="text/css" />
+
+<!-- next we set the active header>ul>li class to .nav-active -->
+<script type="text/javascript">
+	document.getElementById("nav-quote").className += " nav-active";
+</script>
+
+<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery.wizard.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.additional-methods.min.js"></script>
+<script type="text/javascript" src="/js/jquery.form.min.js"></script>
+
+<script type="text/javascript">
+// this is where we do the form wizardry and validation
+$(document).ready(function() {
+
+	$("#quoteForm").wizard({
+		/* the options for the jQuery Wizard plugin ************************************************************************/
+
+		animations: {
+			show: {
+				options: {
+					duration: 300,
+					easing: "swing"
+				},
+				properties: {
+					opacity: "show"
+				}
+			},
+			hide: {
+				options: {
+					duration: 0,
+					easing: "swing"
+				},
+				properties: {
+					opacity: "hide"
+				}
+			}
+		},
+
+
+
+		submit: ".submit",
+
+		transitions: {
+			// here we define the validation for each step			
+			productType: function($step, action) {
+				// since we have disabled tab-navigation through the radios we need to implement
+				// custom validation and error handling for this step
+				
+				// get the checked radio, if any
+				var branch = $step.find("[name=productType]:checked").val();
+
+				// if there's no checked radio...
+				if(!branch) {
+					// add an error class span
+					$('<span class="error">Please pick a product type for your quote</span>').insertAfter($step.find(".radio-images"));
+
+					// attach event listeners to all the radios so that when one is clicked, it removes the error span
+					$step.find("[name=productType]").bind("click", function() {
+						// when a product type is clicked, remove the error span
+						$step.find(".radio-images + span.error").remove();
+
+						// and unbind the event listeners
+						$step.find("[name=productType]").unbind("click");
+					});
+				}
+
+				// if there is a checked radio...
+				else {
+					// remove the error span to remove the error on back button
+					var err = $step.find(".radio-images + span.error");
+					if (!!err) err.remove();
+				}
+
+				// return the radio value (next branch) or 'undefined' (don't move forward)
+				return branch;
+			},
+
+			looseStock: function($step, action) {
+				// since we have disabled the tab-navigation for the radios we must implement
+				// custom validation and error-handling
+
+
+				// check that a stock image radio is selected
+				var check = $step.find("[name=looseStock]:checked").val();
+				if(!check) {
+					// add an error class span
+					$('<span class="error">Please pick a product type for your quote</span>').insertAfter($step.find(".radio-images"));
+
+					// attach event listeners to all the radios so that when one is clicked, it removes the error span
+					$step.find("[name=looseStock]").bind("click", function() {
+						// when a product type is clicked, remove the error span
+						$step.find(".radio-images + span.error").remove();
+
+						// and unbind the event listeners
+						$step.find("[name=looseStock]").unbind("click");
+					});
+					
+					return false;
+				}
+				else {
+					// remove the error span to remove the error on back button
+					var err = $step.find(".radio-images + span.error");
+					if (!!err) err.remove();
+
+					// use the validation plugin to see if the quantity is valid, if not prevent continuing
+					check = $step.find("[name=looseStockQty]").valid();
+
+					if(!check) {
+						// the number box will have it's own validation message
+						return false;
+					}
+
+					else {
+						// everything is good 
+						// the id of the next (and final) step
+						return "contact";
+					}
+				}
+				
+			}
+		},
+	}).validate({
+		/* the options for the jQuery Validate plugin ************************************************************************/
+		onfocusout: function(element) { $(element).valid(); },
+
+		highlight: function(element, errorClass, validClass) {
+			$(element).addClass(errorClass, {duration:400}).removeClass(validClass, {duration:400});
+			$(element.form).find("label[for="+element.id+"]").addClass("redText", {duration:400});
+		},
+
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).removeClass(errorClass, {duration:400}).addClass(validClass, {duration:400});
+			$(element.form).find("label[for="+element.id+"]").removeClass("redText", {duration:400});
+		},
+
+		rules: {
+			productType: "required",
+			contactChurch: "required",
+			contactName: "required",
+			contactPhone: {
+				required: true,
+				phoneUS: true
+			},
+			contactFax: {
+				required: false,
+				phoneUS: true
+			},
+			contactEmail: {
+				required: true,
+				email: true,
+			},
+			contactAddress: "required",
+			contactCity: "required",
+			contactState: {
+				required: true,
+				stateUS: true
+			},
+			contactZip: {
+				required: true,
+				zipcodeUS: true
+			}
+		},
+
+		messages: {
+			contactChurch: "Please specify the name of the church",
+			contactName: "Please specify your name",
+			contactPhone: {
+				required: "We need your phone number to contact you",
+				phoneUS: "This is not a valid phone number"
+			},
+			contactFax: {
+				phoneUS: "This is not a valid fax number"
+			},
+			contactEmail: {
+				required: "We need your e-mail address to contact you",
+				email: "Please enter your email in the form name@provider.com"
+			},
+			contactAddress: "Please specify the address of the church",
+			contactCity: "Please specify the city the church is located in",
+			contactState: "Please specify a valid two-letter state abbreviation",
+			contactZip: {
+				required: "Please specify a valid zip code for the church",
+				zipcodeUS: "This is not a valid US zip code."
+			}
+		},
+
+		// where to inject the error message elements
+		errorPlacement: function(error, element) {
+			error.insertAfter(element);
+		},
+
+		// what to do when form is valid for submission
+		submitHandler: function(form) {
+			$(form).ajaxSubmit({
+				// target: target element to be updated with server response,
+				// beforeSubmit: pre-submit callback
+				// success: post-submit callback
+				// url: override form's action attribute
+				// type: override form's method attribute
+				// dataType: 'xml', 'script', or 'json' (expected server response type)
+				// clearForm: bool (clear all form fields after successful submit)
+				// resetForm: bool (reset the form after successful submit)
+				url: "/quoteSend.php",
+				type: "post",
+
+				// $.ajax options can be used here, too, e.g.
+				// timeout: 3000
+
+				beforeSubmit: function(formData, jqForm, options) {
+					// start spinner
+					$("body").addClass("ajax-loading");
+				},
+
+				success: function(responseText, statusText, xhr, $form) {
+					// stop spinner
+					$("body").removeClass("ajax-loading");
+
+					// handle the received data
+					alert(responseText);
+
+				}
+			});
+		}
+	});
+
+});
+</script>
+
+<!-- then the content inside div#content -->
+<h1>Get a quick quote today!</h1>
+<h2 class="subheading">Fill out the form below or call 1-800-624-1194 for a quick quote</h2>
+
+
+
+<form name="quoteForm" id="quoteForm">
+
+	<!-- BRANCH: MAIN - STEP 1: PRODUCT SELECTION - NEXT: BRANCH ON PRODUCT TYPE -->
+	<fieldset class="step" data-state="productType">
+		<legend>Select a product</legend>
+		<div class="radio-images">
+			<label class="hide-radio" for="productLoose">
+				<input required type="radio" name="productType" id="productLoose" value="loose"/>
+				<img src="/img/quote/productTypes-loose.png"/>
+				<span class="hide-radio-label">Loose / Pew Envelopes</span>
+			</label>
+			
+			<label class="hide-radio" for="productBoxed">
+				<input type="radio" name="productType" id="productBoxed" value="boxed"/>
+				<img src="/img/quote/productTypes-boxed.png"/>
+				<span class="hide-radio-label">Annual Supply Boxed Sets</span>
+			</label>
+			
+			<label class="hide-radio" for="productMailed">
+				<input type="radio" name="productType" id="productMailed" value="mailed"/>
+				<img src="/img/quote/productTypes-mailed.png"/>
+				<span class="hide-radio-label">Periodically Mailed to Members Homes</span>
+			</label>
+			
+			<label class="hide-radio" for="productBooklet">
+				<input type="radio" name="productType" id="productBooklet" value="booklet"/>
+				<img src="/img/quote/productTypes-booklet.png"/>
+				<span class="hide-radio-label">Booklet Style Tear&#8209;outs Mailable to Church</span>
+			</label>
+		</div>
+	</fieldset>
+
+
+
+		<!-- BRANCH: LOOSE - STEP 2: STOCK AND QUANTITY - NEXT: MAIN/CONTACT -->
+		<div class="branch" id="loose">
+			<fieldset class="step" data-state="looseStock">
+				<legend>Choose a stock design and the quantity</legend>
+				<div class="radio-images">
+					<label class="hide-radio" for="looseStockGreenDove">
+						<input required type="radio" name="looseStock" id="looseStockGreenDove" value="looseStockGreenDove"/>
+						<img src="/img/quote/looseStock-greenDove.png"/>
+						<span class="hide-radio-label">Green Dove Welcome Envelopes</span>
+					</label>
+
+					<label class="hide-radio" for="looseStockBlueDove">
+						<input type="radio" name="looseStock" id="looseStockBlueDove" value="looseStockBlueDove"/>
+						<img src="/img/quote/looseStock-blueDove.png"/>
+						<span class="hide-radio-label">Blue Dove Welcome Envelopes</span>
+					</label>
+
+					<label class="hide-radio" for="looseStockButterfly">
+						<input type="radio" name="looseStock" id="looseStockButterfly" value="looseStockButterfly"/>
+						<img src="/img/quote/looseStock-butterfly.png"/>
+						<span class="hide-radio-label">Butterfly Welcome Envelopes</span>
+					</label>
+
+					<label class="hide-radio" for="looseStockCustom">
+						<input type="radio" name="looseStock" id="looseStockCustom" value="looseStockCustom"/>
+						<img src="/img/quote/looseStock-custom.png"/>
+						<span class="hide-radio-label">Your own custom design</span>
+					</label>
+				</div>
+
+				<label for="looseStockQty">Quantity of envelopes:</label>
+				<input type="number" min="500" step="500" name="looseStockQty" id="looseStockQty" value="1000"/>
+			</fieldset>
+		</div>
+
+
+		<!-- BRANCH: BOXED SET - STEP 2: COPY AND QUANTITY - NEXT: MAIN/CONTACT -->
+		<div class="branch" id="boxed">
+			<fieldset class="step" data-state="boxedsetCopy">
+				<legend>Choose the printing style for your weekly envelopes</legend>
+				<ol>
+					<li>
+						<label for="boxedQty">Number of annual sets:</label>
+						<input type="number" min="10" step="1" name="boxedQty" id="boxedQty" value="100"/>
+					</li>
+
+					<li>
+						<span class="label">Ink Color:</span>
+						<label for="boxedInkBlack" class="two-radios">
+							<input type="radio" name="boxedInk" id="boxedInkBlack" value="black"/>
+							<span>Black ink only</span>
+						</label>
+
+						<label for="boxedInkFullColor" class="two-radios">
+							<input type="radio" name="boxedInk" id="boxedInkFullColor" value="color"/>
+							<span>Full color</span>
+						</label>
+					</li>
+
+					<li>
+						<span class="label">Ship the sets:</span>
+						<label for="boxedShippingChurch" class="two-radios">
+							<input class="two-radios" type="radio" name="boxedShipping" id="boxedShippingChurch" value="church"/>
+							<span>To the church</span>
+						</label>
+
+						<label for="boxedShippingMembers" class="two-radios">
+							<input class="two-radios" type="radio" name="boxedShipping" id="boxedShippingMembers" value="members"/>
+							<span>Directly to our members</span>
+						</label>
+
+					</li>
+
+
+
+				</ol>
+
+
+			</fieldset>
+		</div>
+
+
+
+
+		<!-- BRANCH: MAIN - STEP FINAL: CONTACT - NEXT: SUBMIT -->
+		<fieldset class="submit step" id="contact">
+			<legend>Contact Information</legend>
+			<ol>
+				<li>
+					<label for="contactChurch">Church Name:</label>
+					<input type="text" name="contactChurch" id="contactChurch" value="" placeholder="Church Name"/>
+				</li>
+				
+				<li>
+					<label for="contactName">Contact Name:</label>
+					<input required type="text" name="contactName" id="contactName" value="" placeholder="Your Name"/>
+				</li>
+				
+				<li>
+					<label for="contactPhone">Contact Phone:</label>
+					<input required type="tel" name="contactPhone" id="contactPhone" value="" placeholder="5555551212"/></li>
+				
+				<li>
+					<label for="contactFax">Contact Fax:</label>
+					<input type="tel" name="contactFax" id="contactFax" value="" placeholder="5555551212"/>
+				</li>
+				
+				<li>
+					<label for="contactEmail">Contact E-mail:</label>
+					<input required type="email" name="contactEmail" id="contactEmail" value="" placeholder="user@provider.com"/>
+				</li>
+				
+				<li>
+					<label for="contactAddress">Church Address:</label>
+					<input required type="text" name="contactAddress" id="contactAddress" value="" placeholder="Church Address"/>
+				</li>
+				
+				<li>
+					<label for="contactCity">Church City:</label>
+					<input required type="text" name="contactCity" id="contactCity" value="" placeholder="Church City"/>
+				</li>
+				
+				<li>
+					<label for="contactState">Church State:</label>
+					<input required type="text" list="state-list" name="contactState" id="contactState" value="" />
+				</li>
+				
+				<li>
+					<label for="contactZip">Church Zip Code:</label>
+					<input required type="text" name="contactZip" id="contactZip" value="" placeholder="12345"/>
+				</li>
+				
+				<li>
+					<label for="contactNotes">Any special requests:</label>
+					<textarea rows=5 cols=30 id="contactNotes" name="contactNotes"></textarea>
+				</li>
+			</ol>
+				
+							<datalist id="state-list">
+								<option value="AL">Alabama</option>
+								<option value="AK">Alaska</option>
+								<option value="AZ">Arizona</option>
+								<option value="AR">Arkansas</option>
+								<option value="CA">California</option>
+								<option value="CO">Colorado</option>
+								<option value="CT">Connecticut</option>
+								<option value="DC">District of Columbia</option>
+								<option value="DE">Delaware</option>
+								<option value="FL">Florida</option>
+								<option value="GA">Georgia</option>
+								<option value="HI">Hawaii</option>
+								<option value="ID">Idaho</option>
+								<option value="IL">Illinois</option>
+								<option value="IN">Indiana</option>
+								<option value="IA">Iowa</option>
+								<option value="KS">Kansas</option>
+								<option value="KY">Kentucky</option>
+								<option value="LA">Louisiana</option>
+								<option value="ME">Maine</option>
+								<option value="MD">Maryland</option>
+								<option value="MA">Massachusetts</option>
+								<option value="MI">Michigan</option>
+								<option value="MN">Minnesota</option>
+								<option value="MS">Mississippi</option>
+								<option value="MO">Missouri</option>
+								<option value="MT">Montana</option>
+								<option value="NE">Nebraska</option>
+								<option value="NV">Nevada</option>
+								<option value="NH">New Hampshire</option>
+								<option value="NJ">New Jersey</option>
+								<option value="NM">New Mexico</option>
+								<option value="NY">New York</option>
+								<option value="NC">North Carolina</option>
+								<option value="ND">North Dakota</option>
+								<option value="OH">Ohio</option>
+								<option value="OK">Oklahoma</option>
+								<option value="OR">Oregon</option>
+								<option value="PA">Pennsylvania</option>
+								<option value="RI">Rhode Island</option>
+								<option value="SC">South Carolina</option>
+								<option value="SD">South Dakota</option>
+								<option value="TN">Tennessee</option>
+								<option value="TX">Texas</option>
+								<option value="UT">Utah</option>
+								<option value="VT">Vermont</option>
+								<option value="VA">Virginia</option>
+								<option value="WA">Washington</option>
+								<option value="WV">West Virginia</option>
+								<option value="WI">Wisconsin</option>
+								<option value="WY">Wyoming</option>
+							</datalist>
+		</fieldset>
+		<!-- end contact -->
+		
+
+
+
+
+	<div class="navigation">
+		<ul class="clearfix">
+			<li class="float-left"><button type="button" name="backward" class="backward">Back</button></li>
+			<li class="float-right"><button type="button" name="forward" class="forward">Continue</button></li>
+			<li class="float-right"><button type="submit" name="process" class="submit">Submit</button></li>
+		</ul>
+	</div>
+</form>
+
+<!-- our loading animation modal -->
+<div class="modal-spinner"></div>

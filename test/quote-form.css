@@ -1,0 +1,147 @@
+/* aesthetics */
+*, html {font-family:Verdana, Arial, Helvetica, sans-serif;}
+body, form, ul, li, p, h2, h3 {margin:0; padding:0;}
+body {background-color:#4f4f4f; color:#fff;}
+img {border:none;}
+h2 {font-size:14px; margin:0 0 12px;}
+
+/* toggling the visibility of form parts and elements */
+form .form-visible {visibility: visible;}
+form .form-hidden {display: none;}
+
+
+/* global form styles */
+#quoteForm {
+	margin:20px auto;
+	width:610px;
+}
+
+#quoteForm fieldset {
+	margin:0 0 20px;
+	padding:20px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+
+	#quoteForm ol {
+		list-style-type:none;
+		padding:0;
+		margin:0;
+	}
+	
+	#quoteForm li {
+		margin:0 0 12px;
+		position:relative;
+	}
+	
+	#quoteForm label, #quoteForm .label {
+		width:150px;
+		display:inline-block;
+		vertical-align:top;
+	}
+	
+	#quoteForm fieldset input,
+	#quoteForm fieldset textarea,
+	#quoteForm fieldset select {
+		background:#fff url('ico_validation.png') 379px 24px no-repeat;
+		display:inline-block;
+		border:1px solid #fff;
+		padding:3px 26px 3px 3px;
+		
+		-moz-transition: background-color 1s ease;
+		-webkit-transition: background-color 1s ease;
+		-o-transition: background-color 1s ease;
+		transition: background-color 1s ease;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+	
+	#quoteForm fieldset select {width:401px; padding:3px;}
+	#quoteForm fieldset #zipCode {padding:3px; width:400px;}
+	
+#quoteForm fieldset .radchecks input {width:auto;}
+#quoteForm fieldset .radchecks label {width:105px;}
+
+#quoteForm input::-webkit-input-placeholder {color:#a9a9a9;}
+#quoteForm input:-moz-placeholder {color:#a9a9a9;}
+
+/* error styling */
+#quoteForm input.error {
+	background-color:#500;
+	background-position:379px 3px;
+	outline:none;
+}
+
+#quoteForm input.required {
+	background-color:#fff;
+	background-position:379px -61px;
+}
+
+#quoteForm input.valid {
+	background-color:#fff;
+	background-position:379px -61px;
+}
+
+#quoteForm fieldset input:required:valid {
+	background-color:#fff;
+	background-position:379px -61px;
+}
+
+
+
+
+
+#quoteForm label.hide-radio > input[type=radio] {display:none;}
+#quoteForm label.hide-radio > input[type=radio] + img {
+	cursor:pointer;
+	border:2px solid transparent;
+}
+#quoteForm label.hide-radio > input[type=radio]:checked + img {border:2px solid #f00;}
+#quoteForm label.hide-radio span.hide-radio-label {cursor:pointer;}
+
+
+/* FORM PART ONE - PRODUCT SELECTION */
+#form-part-one .radchecks .hide-radio {width:100px; text-align:center;}
+#form-part-one .radchecks .hide-radio {margin-left:30px;}
+}
+
+/* LOOSE PATH */
+
+/* LOOSE - STOCK */
+#form-part-three-loose-stock-image {
+	/* default stock loose to vertical, 3.125"x6.25" */
+	/*width:3.125in;
+	height:6.25in;*/
+	width:238px;
+	height:450px;
+	background:url() no-repeat center center;
+	border:2px solid #000;
+}
+
+	#form-part-three-loose-stock-image.stockGreenDove {background-image:url('loose-stock-dove-green.png');}
+	#form-part-three-loose-stock-image.stockButterfly {background-image:url('loose-stock-welcome-butterfly.png');}
+	
+	/* this stock envelope is horizontal */
+	#form-part-three-loose-stock-image.stockBlueDove {
+		background-image:url('loose-stock-dove-blue.png');
+		/*width:6.25in;
+		height:3.125in;*/
+		width:450px;
+		height:238px;
+	}
+
+
+
+
+/* LOOSE - CUSTOM */
+#form-part-three-loose-custom-image {
+	/* horizontal 6.25"x3.125" */
+	/*width:3.125in;
+	height:1.5625in;*/
+	width:450px;
+	height:238px;
+	background:url('loose-custom.png') no-repeat center center;
+	border:2px solid #000;
+}

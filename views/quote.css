@@ -1,0 +1,300 @@
+/* aesthetics */
+*, html {font-family:Verdana, Arial, Helvetica, sans-serif;}
+*, *:before, *:after {
+  /* Chrome 9-, Safari 5-, iOS 4.2-, Android 3-, Blackberry 7- */
+  -webkit-box-sizing: border-box; 
+  /* Firefox (desktop or Android) 28- */
+  -moz-box-sizing: border-box;
+  /* Firefox 29+, IE 8+, Chrome 10+, Safari 5.1+, Opera 9.5+, iOS 5+, Opera Mini Anything, Blackberry 10+, Android 4+ */
+  box-sizing: border-box;
+}
+body, form, ul, li, p, h2, h3 {margin:0; padding:0;}
+body {background-color:#4f4f4f; color:#fff;}
+img {border:none;}
+h1 {text-align:center;}
+h2 {font-size:14px; margin:0 0 12px; text-align:center;}
+
+/* toggling the visibility of form parts and elements */
+form .form-visible {visibility: visible;}
+form .form-hidden {display: none;}
+
+
+/* global form styles */
+#quoteForm {
+	margin:20px auto;
+	width:610px;
+}
+
+#quoteForm fieldset {
+	margin:0 0 20px;
+	padding:20px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+
+	#quoteForm ol {
+		list-style-type:none;
+		padding:0;
+		margin:0;
+	}
+	
+	#quoteForm li {
+		margin:0 0 12px;
+		position:relative;
+	}
+
+	#quoteForm label,
+	#quoteForm span.label {
+		width:200px;
+		display:inline-block;
+		vertical-align:top;
+	}
+	/*
+	#quoteForm label.hide-radio {
+		width:100px;
+		display:inline-block;
+		vertical-align:top;
+	}
+	*/
+
+	
+	#quoteForm input,
+	#quoteForm textarea,
+	#quoteForm select {
+		background:#fff;
+		color:#000;
+		display:inline-block;
+		border:1px solid #fff;
+		padding:3px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+
+	#quoteForm button {
+		background:#666;
+		color:#000;
+		border:1px solid #000;
+		border-radius:5px;
+		padding:5px;
+		margin:5px;
+	}
+	
+	#quoteForm select {width:401px; padding:3px;}
+	#quoteForm #zipCode {padding:3px; width:400px;}
+	
+.radio-images {margin-bottom:25px;}
+.radio-images input,
+.radio-images label.hide-radio,
+.radio-images span.hide-radio-label {
+	display:block;
+	width:100px !important;
+}
+
+
+#quoteForm input::-webkit-input-placeholder {color:#a9a9a9;}
+#quoteForm input:-moz-placeholder {color:#a9a9a9;}
+
+/* error styling */
+#quoteForm input.error {
+	background-color:#500;
+	color:#000;
+	background-position:379px 3px;
+	outline:none;
+}
+#quoteForm label.error,
+#quoteForm span.error {
+	background-color:#999;
+	color:#600;
+	width:400px;
+	padding:5px;
+	margin:5px 0 10px 0;
+}
+
+.redText {
+	color:#600;
+}
+
+#quoteForm input.required {
+	background-color:#660;
+	background-position:379px -61px;
+}
+
+#quoteForm input.valid {
+	background-color:#fff;
+	background-position:379px -61px;
+}
+
+#quoteForm fieldset input:required:valid {
+	background-color:#fff;
+	background-position:379px -61px;
+}
+
+#quoteForm label.two-radios {
+	display:inline-block;
+	width:150px;
+	padding-right:10px;
+}
+
+#quoteForm label.two-radios:last-child {
+	padding-right:0;
+}
+	#quoteForm label.two-radios span {
+	}
+
+
+
+
+#quoteForm label.hide-radio > input[type=radio] {display:none;}
+#quoteForm label.hide-radio > input[type=radio] + img {
+	cursor:pointer;
+	border:2px solid transparent;
+}
+#quoteForm label.hide-radio > input[type=radio]:checked + img {border:2px solid #f00;}
+#quoteForm label.hide-radio span.hide-radio-label {cursor:pointer;}
+
+
+.radio-images .hide-radio {
+	width:100px;
+	text-align:center;
+	margin-left:30px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+
+#looseStockQty,
+label[for=looseStockQty] {
+	margin-top:40px;
+}
+
+
+
+/* wizard styles */
+.wizard {
+	/*
+	border: #ddd 1px solid;
+	border-radius: 10px;
+	*/
+	margin: 10px 10px 0 10px;
+	padding: 10px;
+}
+
+.wizard .wizard-header {
+	background-color: #f4f4f4;
+	border-bottom: #ddd 1px solid;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	padding: 5px 10px;
+	margin: 0 0 10px 0;
+}
+
+.wizard .wizard-step {
+	margin: 10px;
+}
+
+/*
+#navigation {
+	border: #ddd 1px solid;
+	border-radius: 10px;
+	margin: 10px;
+	padding: 10px;
+}
+
+	#navigation li {
+		margin: 2px 0;
+	}
+*/
+label.error {
+	color: #ff0000;
+	margin-left: 10px;
+}
+
+#progressbar {
+	margin: 10px 0;
+	width: 400px;
+	height: 15px;
+}
+
+
+
+.navigation {
+	/*border-top: #ddd 1px solid;*/
+	margin-top: 10px;
+}
+
+	.navigation ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+		.navigation li.float-left {
+			float: left;
+			margin-right: 10px;
+		}
+
+			.navigation li.float-left button {
+				/* less contrast on "negative" buttons */
+				background-color:#999;
+				font-weight:normal;
+			}
+
+		.navigation li.float-right {
+			float:right;
+			margin-left:10px;
+		}
+
+			.navigation li.float-right button {
+				/* more contrast on "positive" buttons */
+				background-color:#ddd !important;
+				font-weight:bold;
+				padding:10px !important;
+			}
+
+			.navigation li button:disabled,
+			.navigation li button[disabled] {
+				display:none;
+			}
+
+
+
+
+.clearfix:before, .clearfix:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+
+
+
+/* modal spinner */
+div.modal-spinner {
+	display:none;
+	position:fixed;
+	z-index:1000;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(100,100,100,0.8) url('/img/spin.gif') 50% 50% no-repeat;
+}
+
+	/* when the body has the loading class, turn the scrollbar off */
+	body.ajax-loading {
+		overflow:hidden;
+	}
+
+	/* when the body has the loading class, the modal spinner should be visible */
+	body.ajax-loading div.modal-spinner {
+		display:block;
+	}
