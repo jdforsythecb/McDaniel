@@ -3,9 +3,86 @@
 
 <!-- next we set the active header>ul>li class to .nav-active -->
 <script type="text/javascript">
-	document.getElementById("nav-products").className += " nav-active";
+$(document).ready(function() {
+	$("#nav-products").addClass("nav-active");
+
+	/* modal dialog settings */
+	$("#imageZoom").dialog({
+		autoOpen: false,
+		modal: true,
+		title: "Product",
+		width: 700,
+		resizeable: false
+	});
+
+	$("#imageZoom").bind("dialogclose", function(event, ui) {
+		$("#zoomedImage").attr("src", "");
+		$("#zoomedImageCaption").html("");
+	});
+
+	// bind all links with class "zoomable-image" to a click handler
+	$(".zoomable-image").click(function(event) {
+		// prevent from going to #ZoomImage and messing with the history state
+		event.preventDefault();
+		// open the modal dialog with the proper image
+		var imgData = getImageData(event.currentTarget.id);
+		console.log(imgData);
+		// only open the dialog if we have a source for the image
+		if (imgData.src !== "") setZoomImage(imgData.src, imgData.title, imgData.caption);
+	});
+});
+
+var setZoomImage = function(source, title, caption) {
+	$("#zoomedImage").attr("src", source);
+	$("#imageZoom").dialog("option", "title", title);
+	$("#zoomedImageCaption").html(caption);
+	$("#imageZoom").dialog("open");
+	$(".ui-widget-overlay").click(function(){
+		$("#imageZoom").dialog("close");
+	});
+};
+
+var getImageData = function(id) {
+	var baseImageSrc = "/img/products/";
+	var baseImageExt = ".png";
+	var img, title, caption;
+
+	switch(id) {
+		case "loose-butterfly":
+			img = "loose-butterfly-full";
+			title = "Welcome Butterfly";
+			caption = "This is one of our most popular loose/pew envelopes, the beautiful, full-color butterfly image with a message welcoming visitors to your church. This is also a great backup for your regular envelope members who may forget their envelope, or for new members to request envelopes.";
+			break;
+		default:
+			img = "";
+			title = "";
+			caption = "";
+	}
+
+	// if img is empty, leave it - otherwise put the filename between the path and extension
+	img = (img === "") ? "" : baseImageSrc + img + baseImageExt;
+
+	return {
+		src: img,
+		title: title,
+		caption: caption
+	};
+
+};
+
 </script>
 
 <!-- then the content inside div#content -->
 <h1>This is the Products Page</h1>
 <p>Products</p>
+
+<a class="zoomable-image" id="loose-butterfly" href="#ZoomImage">
+	<img src="/img/products/loose-butterfly-thumb.png" />
+</a>
+
+
+
+<div id="imageZoom">
+	<img id="zoomedImage" src="" /><br />
+	<p id="zoomedImageCaption"></p>
+</div>
