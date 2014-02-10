@@ -45,7 +45,7 @@ header {
 	right:0;
 	overflow:hidden;
 	background:#454545 url('/img/nav/bg.png') repeat-x 0 0 fixed;
-	z-index:1000;
+	z-index:99;
 }
 
 	header img {

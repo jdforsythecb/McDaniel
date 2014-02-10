@@ -6,7 +6,7 @@
 $(document).ready(function() {
 	$("#nav-products").addClass("nav-active");
 
-	/* modal dialog settings */
+	// modal dialog settings
 	$("#imageZoom").dialog({
 		autoOpen: false,
 		modal: true,
@@ -15,6 +15,7 @@ $(document).ready(function() {
 		resizeable: false
 	});
 
+	// when modal dialog closes
 	$("#imageZoom").bind("dialogclose", function(event, ui) {
 		$("#zoomedImage").attr("src", "");
 		$("#zoomedImageCaption").html("");
@@ -81,7 +82,7 @@ var getImageData = function(id) {
 </a>
 
 
-
+<!-- modal overlay -->
 <div id="imageZoom">
 	<img id="zoomedImage" src="" /><br />
 	<p id="zoomedImageCaption"></p>
