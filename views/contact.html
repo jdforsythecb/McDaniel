@@ -2,10 +2,123 @@
 <link rel="stylesheet" href="/views/contact.css" type="text/css" />
 
 <!-- next we set the active header>ul>li class to .nav-active -->
-<script type="text/javascript">
-	document.getElementById("nav-contact").className += " nav-active";
-</script>
+<script type="text/javascript" src="/views/contact.js"></script>
 
 <!-- then the content inside div#content -->
-<h1>This is the Contact Page</h1>
-<p>Contact</p>
+
+
+<div id="contact-box" class="ui-accordion ui-widget ui-helper-reset">
+
+	<div class="sec">
+		<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-header-active ui-state-active ui-corner-top">Contact Us</h3>
+		<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+			<form name="contactForm" id="contactForm">
+				<ol>
+					<li>
+						<label for="contactChurch">Church Name:</label>
+						<input type="text" name="contactChurch" id="contactChurch" value="" placeholder="Church Name"/>
+					</li>
+					
+					<li>
+						<label for="contactName">Name:</label>
+						<input required type="text" name="contactName" id="contactName" value="" placeholder="Your Name"/>
+					</li>
+					
+					<li>
+						<label for="contactPhone">Phone:</label>
+						<input required type="tel" name="contactPhone" id="contactPhone" value="" placeholder="5555551212"/>
+					</li>
+					
+					<li>
+						<label for="contactEmail">E-mail:</label>
+						<input required type="email" name="contactEmail" id="contactEmail" value="" placeholder="user@provider.com"/>
+					</li>
+					
+					<li>
+						<label for="contactAddress">Church Address:</label>
+						<input required type="text" name="contactAddress" id="contactAddress" value="" placeholder="Church Address"/>
+					</li>
+					
+					<li>
+						<label for="contactCity">Church City:</label>
+						<input required type="text" name="contactCity" id="contactCity" value="" placeholder="Church City"/>
+					</li>
+					
+					<li>
+						<label for="contactState">Church State:</label>
+						<input required type="text" list="state-list" name="contactState" id="contactState" value="" />
+					</li>
+					
+					<li>
+						<label for="contactZip">Church Zip Code:</label>
+						<input required type="text" name="contactZip" id="contactZip" value="" placeholder="12345"/>
+					</li>
+					
+					<li>
+						<label for="contactMessage">Message:</label>
+						<textarea rows=8 cols=50 id="contactMessage" name="contactMessage"></textarea>
+					</li>
+				</ol>
+					
+								<datalist id="state-list">
+									<option value="AL">Alabama</option>
+									<option value="AK">Alaska</option>
+									<option value="AZ">Arizona</option>
+									<option value="AR">Arkansas</option>
+									<option value="CA">California</option>
+									<option value="CO">Colorado</option>
+									<option value="CT">Connecticut</option>
+									<option value="DC">District of Columbia</option>
+									<option value="DE">Delaware</option>
+									<option value="FL">Florida</option>
+									<option value="GA">Georgia</option>
+									<option value="HI">Hawaii</option>
+									<option value="ID">Idaho</option>
+									<option value="IL">Illinois</option>
+									<option value="IN">Indiana</option>
+									<option value="IA">Iowa</option>
+									<option value="KS">Kansas</option>
+									<option value="KY">Kentucky</option>
+									<option value="LA">Louisiana</option>
+									<option value="ME">Maine</option>
+									<option value="MD">Maryland</option>
+									<option value="MA">Massachusetts</option>
+									<option value="MI">Michigan</option>
+									<option value="MN">Minnesota</option>
+									<option value="MS">Mississippi</option>
+									<option value="MO">Missouri</option>
+									<option value="MT">Montana</option>
+									<option value="NE">Nebraska</option>
+									<option value="NV">Nevada</option>
+									<option value="NH">New Hampshire</option>
+									<option value="NJ">New Jersey</option>
+									<option value="NM">New Mexico</option>
+									<option value="NY">New York</option>
+									<option value="NC">North Carolina</option>
+									<option value="ND">North Dakota</option>
+									<option value="OH">Ohio</option>
+									<option value="OK">Oklahoma</option>
+									<option value="OR">Oregon</option>
+									<option value="PA">Pennsylvania</option>
+									<option value="RI">Rhode Island</option>
+									<option value="SC">South Carolina</option>
+									<option value="SD">South Dakota</option>
+									<option value="TN">Tennessee</option>
+									<option value="TX">Texas</option>
+									<option value="UT">Utah</option>
+									<option value="VT">Vermont</option>
+									<option value="VA">Virginia</option>
+									<option value="WA">Washington</option>
+									<option value="WV">West Virginia</option>
+									<option value="WI">Wisconsin</option>
+									<option value="WY">Wyoming</option>
+								</datalist>
+				<div class="navigation">
+					<button type="submit" name="contactSubmit" class="submit">Submit</button>
+				</div>
+			</form>
+
+
+
+		</div>
+	</div>

@@ -1,3 +1,34 @@
+#product-sections {
+	width:90%;
+	margin:20px auto 0 auto;
+}
+
+	#product-sections .sec {
+		margin-bottom:20px;
+	}
+
+		#product-sections .sec ul {
+			list-style-type:none;
+		}
+
+			#product-sections .sec ul li {
+				display:block;
+				float:left;
+				margin-left:20px;
+				width:150px;
+				text-align:center;
+			}
+
+				#product-sections .sec ul li a img {
+					margin:0 auto;
+				}
+
+
+
+
+
+
+/* image zoom overlay dialog */
 img#zoomedImage {
 	display:block;
 	margin:10px auto 0 auto;

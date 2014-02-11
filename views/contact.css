@@ -1,0 +1,144 @@
+#contact-box .sec {
+	width:90%;
+	margin:20px auto 0;
+}
+
+	#contact-box .sec div form {
+		display:block;
+		margin:0 auto;
+	}
+
+	#contact-box .sec div form ol {
+		list-style-type:none;
+		font-size:0.8em;
+		display:block;
+		margin:0 auto;
+		width:auto;
+	}
+
+		#contact-box .sec div form ol li {
+			margin:0 0 25px;
+			position:relative;
+		}
+
+			#contact-box .sec div form ol li label {
+				width:200px;
+				display:inline-block;
+				vertical-align:top;
+			}
+
+			#contact-box .sec div form ol li input,
+			#contact-box .sec div form ol li textarea,
+			#contact-box .sec div form ol li select {
+				background:#fff;
+				color:#000;
+				display:inline-block;
+				border:1px solid #fff;
+				padding:3px;
+				border-radius: 5px;
+			}
+
+			#contact-box .sec div div button {
+				background:#666;
+				color:#000;
+				border:1px solid #000;
+				border-radius:5px;
+				padding:5px;
+				margin:5px;
+			}
+
+			#contact-box .sec div form ol li select {
+				width:401px;
+				padding:3px;
+			}
+
+			#contact-box .sec div form ol li input::-webkit-input-placeholder {color:#a9a9a9;}
+			#contact-box .sec div form ol li input:-moz-placeholder {color:#a9a9a9;}
+
+
+
+			/* error styling */
+			#contact-box .sec div form ol li input.error {
+				background-color:#500;
+				color:#000;
+				background-position:379px 3px;
+				outline:none;
+			}
+
+			#contact-box .sec div form ol li label.error {
+				background-color:#999;
+				color:#600;
+				width:400px;
+				padding:5px;
+				margin:5px 0 10px 0;
+			}
+
+			.redText {
+				color:#600;
+			}
+
+			#contact-box input.required {
+				background-color:#660;
+				background-position:379px -61px;
+			}
+
+			#contact-box input.valid {
+				background-color:#fff;
+				background-position:379px -61px;
+			}
+
+			#contact-box fieldset input:required:valid {
+				background-color:#fff;
+				background-position:379px -61px;
+			}
+
+
+		#contact-box div.navigation {
+			margin-top: 10px;
+		}
+
+			#contact-box div.navigation button {
+				background-color:#ddd !important;
+				font-weight:bold;
+				padding:10px !important;
+				display:block;
+				float:right;
+			}
+
+
+.clearfix:before, .clearfix:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+
+/* modal spinner */
+div.modal-spinner {
+	display:none;
+	position:fixed;
+	z-index:1000;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(100,100,100,0.8) url('/img/spin.gif') 50% 50% no-repeat;
+}
+
+	/* when the body has the loading class, turn the scrollbar off */
+	body.ajax-loading {
+		overflow:hidden;
+	}
+
+	/* when the body has the loading class, the modal spinner should be visible */
+	body.ajax-loading div.modal-spinner {
+		display:block;
+	}
+
+
+
