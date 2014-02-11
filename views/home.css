@@ -13,6 +13,7 @@
 	overflow:hidden;
 }
 
+<<<<<<< HEAD
 #container #columns div.col {
 	display:block;
 	float:left;
@@ -25,6 +26,74 @@
 	margin-top:10px;
 	cursor:default;
 }
+=======
+	#container #columns #column-left,
+	#container #columns #column-middle,
+	#container #columns #column-right {
+		width:25%;
+		height:auto;
+		margin-left:6.25%;
+		float:left;
+		overflow:visible;	
+		
+		background-color:#222;
+		color:#fff;
+		
+		/* for float:bottom'ing the see more buttons */
+		position:relative;
+		/* this adds enough padding to the bottom for the button
+		 * note: this value is effectively doubled because we are using JavaScript to compute the height
+		 * of the tallest column, which includes this padding, then we set all the heights to this, but
+		 * that height value doesn't take into account the padding, so it gets basically doubled
+		 */
+		padding-bottom:75px;
+	}
+	
+	#container #columns #column-right {
+		clear:right;
+	}
+	
+		#columns h2 {
+			margin:0.5em;
+			font-size:120%;
+			letter-spacing:0.1em;
+			font-weight:normal;
+		}
+		
+				
+		/* cool hr styling requires a pseudo-element */
+		#columns hr {
+		    padding: 0;
+		    border: none;
+		    border-top: medium double #fff;
+		    color: #fff; /* the color of the :after content */
+		    text-align: center;
+		    margin-bottom:1.5em;
+		    width:95%;
+		    margin-left:2.5%;
+		}
+		
+			#columns hr:after {
+			    content: "§";
+			    display: inline-block;
+			    position: relative; 
+			    top: -0.7em;  
+			    font-family:Georgia !important;
+			    font-size: 1.2em;
+			    padding: 0 0.1em;
+			    background-color:#222;
+			}
+		
+		
+		
+		#columns p {
+			margin:0 0.5em;
+			text-align:justify;
+			line-height:1.2em;
+			font-weight:normal;
+			font-size:100%;
+		}
+>>>>>>> origin/home
 
 	#container #columns div {
 		font-size:0.8em;
