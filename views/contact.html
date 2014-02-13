@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="/views/contact.css" type="text/css" />
 
 <!-- next we set the active header>ul>li class to .nav-active -->
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.additional-methods.min.js"></script>
+<script type="text/javascript" src="/js/jquery.form.min.js"></script>
 <script type="text/javascript" src="/views/contact.js"></script>
 
 <!-- then the content inside div#content -->
@@ -26,12 +29,12 @@
 					
 					<li>
 						<label for="contactPhone">Phone:</label>
-						<input required type="tel" name="contactPhone" id="contactPhone" value="" placeholder="5555551212"/>
+						<input class="requirement-group" type="tel" name="contactPhone" id="contactPhone" value="" placeholder="5555551212"/>
 					</li>
 					
 					<li>
 						<label for="contactEmail">E-mail:</label>
-						<input required type="email" name="contactEmail" id="contactEmail" value="" placeholder="user@provider.com"/>
+						<input class="requirement-group" type="email" name="contactEmail" id="contactEmail" value="" placeholder="user@provider.com"/>
 					</li>
 					
 					<li>
@@ -56,7 +59,7 @@
 					
 					<li>
 						<label for="contactMessage">Message:</label>
-						<textarea rows=8 cols=50 id="contactMessage" name="contactMessage"></textarea>
+						<textarea required rows=8 cols=50 id="contactMessage" name="contactMessage"></textarea>
 					</li>
 				</ol>
 					

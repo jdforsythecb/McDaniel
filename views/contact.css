@@ -1,11 +1,10 @@
 #contact-box .sec {
-	width:90%;
+	width:600px;
 	margin:20px auto 0;
 }
 
-	#contact-box .sec div form {
-		display:block;
-		margin:0 auto;
+	#contact-box .sec h3.ui-accordion-header {
+		cursor:default;
 	}
 
 	#contact-box .sec div form ol {
@@ -13,7 +12,7 @@
 		font-size:0.8em;
 		display:block;
 		margin:0 auto;
-		width:auto;
+		width:450px;
 	}
 
 		#contact-box .sec div form ol li {

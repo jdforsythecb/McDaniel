@@ -181,7 +181,7 @@ $(document).ready(function() {
 			},
 			contactEmail: {
 				required: "We need your e-mail address to contact you",
-				email: "Please enter your email in the form name@provider.com"
+				email: "Please enter your e-mail in the form name@provider.com"
 			},
 			contactAddress: "Please specify the address of the church",
 			contactCity: "Please specify the city the church is located in",
@@ -212,7 +212,7 @@ $(document).ready(function() {
 				// dataType: 'xml', 'script', or 'json' (expected server response type)
 				// clearForm: bool (clear all form fields after successful submit)
 				// resetForm: bool (reset the form after successful submit)
-				url: "/quoteSend.php",
+				url: "/actions/quoteSend.php",
 				type: "post",
 
 				// $.ajax options can be used here, too, e.g.
