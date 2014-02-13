@@ -130,7 +130,7 @@ footer {
 	overflow:hidden;
 	background:url('/img/nav/bg.png') repeat-x 0 0;
 	background-color:#fff;
-	z-index:999;
+	z-index:99;
 	line-height:69px;
 	
 	/* flip background vertically */

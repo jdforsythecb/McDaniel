@@ -1,13 +1,18 @@
 $(document).ready(function() {
 	// set the products tab to active
 	$("#nav-products").addClass("nav-active");
+	var maxWidth = $(window).width()*0.9;
+	var maxHeight = $(window).height()*0.95;
 
 	// modal dialog settings
 	$("#imageZoom").dialog({
 		autoOpen: false,
 		modal: true,
 		title: "Product",
-		width: 700,
+		width: Math.min(700,maxWidth),
+		height: "auto",
+		maxWidth: maxWidth,
+		maxHeight: maxHeight,
 		resizable: true
 	});
 
@@ -23,7 +28,6 @@ $(document).ready(function() {
 		event.preventDefault();
 		// open the modal dialog with the proper image
 		var imgData = getImageData(event.currentTarget.id);
-		console.log(imgData);
 		// only open the dialog if we have a source for the image
 		if (imgData.src !== "") setZoomImage(imgData.src, imgData.width, imgData.height, imgData.title, imgData.caption);
 	});
