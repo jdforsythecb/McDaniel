@@ -133,17 +133,40 @@ form .form-hidden {display: none;}
 
 #quoteForm label.two-radios {
 	display:inline-block;
-	width:150px;
+	width:160px;
 	padding-right:10px;
 }
+
+	#quoteForm label.two-radios span {
+		display:inline-block;
+		width:130px;
+		vertical-align:text-top;
+	}
 
 #quoteForm label.two-radios:last-child {
 	padding-right:0;
 }
-	#quoteForm label.two-radios span {
+
+#quoteForm label.three-radios {
+	display:inline-block;
+	width:110px;
+	padding-right:9px;
+}
+
+	#quoteForm label.three-radios span {
+		display:inline-block;
+		width:80px;
+		vertical-align:text-top;
 	}
 
+#quoteForm label.three-radios:last-child {
+	padding-right:0;
+}
 
+#quoteForm div.four-radios {
+	display:inline-block;
+	width:340px;
+}
 
 
 #quoteForm label.hide-radio > input[type=radio] {display:none;}

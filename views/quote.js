@@ -1,5 +1,12 @@
 // this is where we do the form wizardry and validation
 $(document).ready(function() {
+	
+	// polyfill for IE - select item when image is clicked (other browsers do so since the img is in the label but not IE)
+	$("label.hide-radio img").bind("click", function(e) {
+		//$(this).prev().attr("checked", true);
+		$(this).parent().click();
+		//console.log("fired:" + JSON.stringify(e));
+	});
 
 	// set the active header>ul>li class to .nav-active
 	$("#nav-quote").addClass("nav-active");
@@ -144,7 +151,8 @@ $(document).ready(function() {
 			contactChurch: "required",
 			contactName: "required",
 			contactPhone: {
-				required: true,
+				require_from_group2: [1, ".required-contact"],
+				//required: true,
 				phoneUS: true
 			},
 			contactFax: {
@@ -152,7 +160,8 @@ $(document).ready(function() {
 				phoneUS: true
 			},
 			contactEmail: {
-				required: true,
+				//required: true,
+				require_from_group2: [1, ".required-contact"],
 				email: true,
 			},
 			contactAddress: "required",
@@ -160,7 +169,11 @@ $(document).ready(function() {
 			// our custom validation method
 			contactState: {
 				required: true,
-				stateUS: true
+				stateUS: {
+					caseSensitive: false,
+					includeTerritories: false,
+					includeMilitary: false
+				}
 			},
 			contactZip: {
 				required: true,
@@ -173,19 +186,22 @@ $(document).ready(function() {
 			contactChurch: "Please specify the name of the church",
 			contactName: "Please specify your name",
 			contactPhone: {
-				required: "We need your phone number to contact you",
+				require_from_group2: "We need your phone number or email to contact you",
 				phoneUS: "This is not a valid phone number"
 			},
 			contactFax: {
 				phoneUS: "This is not a valid fax number"
 			},
 			contactEmail: {
-				required: "We need your e-mail address to contact you",
+				require_from_group2: "We need your e-mail or phone number to contact you",
 				email: "Please enter your e-mail in the form name@provider.com"
 			},
 			contactAddress: "Please specify the address of the church",
 			contactCity: "Please specify the city the church is located in",
-			contactState: "Please specify a valid two-letter state abbreviation",
+			contactState: {
+				required: "Please specify the state the church is in",
+				stateUS: "That is not a valid two letter US state abbreviation"
+			},
 			contactZip: {
 				required: "Please specify a valid zip code for the church",
 				zipcodeUS: "This is not a valid US zip code."
@@ -212,7 +228,7 @@ $(document).ready(function() {
 				// dataType: 'xml', 'script', or 'json' (expected server response type)
 				// clearForm: bool (clear all form fields after successful submit)
 				// resetForm: bool (reset the form after successful submit)
-				url: "/actions/quoteSend.php",
+				url: "/actions/quoteSubmit.php",
 				type: "post",
 
 				// $.ajax options can be used here, too, e.g.
@@ -226,13 +242,37 @@ $(document).ready(function() {
 
 				// do this after the form submit gets a response
 				success: function(responseText, statusText, xhr, $form) {
+					
+					if (responseText === "success") {
+						$('<div id="info-modal"><p>Your quote request has been submitted.</p><p>We will contact you shortly about your quote.</p></div>')
+							.appendTo("body")
+							.dialog({
+								width:500,
+								modal:true,
+								resizable:false
+							});
+							
+						// if successful, clear the form
+						$("#quoteForm")[0].reset();
+					}
+					
+					else {
+						$('<div id="info-modal"><p>There was an issue sending your quote request. Please try again.</p><p>If you continue to have issues, please call us at 1-800-624-1194 to speak with a representative now.</p></div>')
+							.appendTo("body")
+							.dialog({
+								width:500,
+								modal:true,
+								resizable:false
+							});
+							
+						// debug
+						console.log(responseText);
+					}
+					
+					
+					
 					// stop spinner
 					$("body").removeClass("ajax-loading");
-
-					// handle the received data
-					alert(responseText);
-
-					// should check for status and maybe resubmit on error?
 
 				}
 			});

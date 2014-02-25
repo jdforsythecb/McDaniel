@@ -55,25 +55,25 @@
 				<legend>Choose a stock design and the quantity</legend>
 				<div class="radio-images">
 					<label class="hide-radio" for="looseStockGreenDove">
-						<input required type="radio" name="looseStock" id="looseStockGreenDove" value="looseStockGreenDove"/>
+						<input required type="radio" name="looseStock" id="looseStockGreenDove" value="greenDove"/>
 						<img src="/img/quote/looseStock-greenDove.png"/>
 						<span class="hide-radio-label">Green Dove Welcome Envelopes</span>
 					</label>
 
 					<label class="hide-radio" for="looseStockBlueDove">
-						<input type="radio" name="looseStock" id="looseStockBlueDove" value="looseStockBlueDove"/>
+						<input type="radio" name="looseStock" id="looseStockBlueDove" value="blueDove"/>
 						<img src="/img/quote/looseStock-blueDove.png"/>
 						<span class="hide-radio-label">Blue Dove Welcome Envelopes</span>
 					</label>
 
 					<label class="hide-radio" for="looseStockButterfly">
-						<input type="radio" name="looseStock" id="looseStockButterfly" value="looseStockButterfly"/>
+						<input type="radio" name="looseStock" id="looseStockButterfly" value="butterfly"/>
 						<img src="/img/quote/looseStock-butterfly.png"/>
 						<span class="hide-radio-label">Butterfly Welcome Envelopes</span>
 					</label>
 
 					<label class="hide-radio" for="looseStockCustom">
-						<input type="radio" name="looseStock" id="looseStockCustom" value="looseStockCustom"/>
+						<input type="radio" name="looseStock" id="looseStockCustom" value="custom"/>
 						<img src="/img/quote/looseStock-custom.png"/>
 						<span class="hide-radio-label">Your own custom design</span>
 					</label>
@@ -101,9 +101,14 @@
 							<input type="radio" name="boxedInk" id="boxedInkBlack" value="black"/>
 							<span>Black ink only</span>
 						</label>
+						
+						<label for="boxedInkOneColor" class="three-radios">
+							<input type="radio" name="boxedInk" id="boxedInkOneColor" value="oneColor">
+							<span>One color ink</span>
+						</label>
 
 						<label for="boxedInkFullColor" class="two-radios">
-							<input type="radio" name="boxedInk" id="boxedInkFullColor" value="color"/>
+							<input type="radio" name="boxedInk" id="boxedInkFullColor" value="fullColor"/>
 							<span>Full color</span>
 						</label>
 					</li>
@@ -114,24 +119,24 @@
 							<select name="boxedColor" id="boxedColor">
 								<option value="white">Plain White Paper</option>
 								<optgroup label="Background Colors">
-									<option value="bgBlue">Blue</option>
-									<option value="bgCanary">Canary Yellow</option>
-									<option value="bgCherry">Cherry Red</option>
-									<option value="bgGold">Goldenrod</option>
-									<option value="bgGray">Gray</option>
-									<option value="bgGreen">Green</option>
-									<option value="bgPink">Pink</option>
+									<option value="clouds_blue">Blue</option>
+									<option value="clouds_canary">Canary Yellow</option>
+									<option value="clouds_cherry">Cherry Red</option>
+									<option value="clouds_gold">Goldenrod</option>
+									<option value="clouds_gray">Gray</option>
+									<option value="clouds_green">Green</option>
+									<option value="clouds_pink">Pink</option>
 								</optgroup>
 								<optgroup label="Border Colors">
-									<option value="bdBlue">Blue</option>
-									<option value="bdLBlue">Light Blue</option>
-									<option value="bdCanary">Canary Yellow</option>
-									<option value="bdGold">Goldenrod</option>
-									<option value="bdGray">Gray</option>
-									<option value="bdGreen">Green</option>
-									<option value="bdPink">Pink</option>
-									<option value="bdPurple">Purple</option>
-									<option value="bdRed">Red</option>
+									<option value="border_blue">Blue</option>
+									<option value="border_light_blue">Light Blue</option>
+									<option value="border_canary">Canary Yellow</option>
+									<option value="border_gold">Goldenrod</option>
+									<option value="border_gray">Gray</option>
+									<option value="border_green">Green</option>
+									<option value="border_pink">Pink</option>
+									<option value="border_purple">Purple</option>
+									<option value="border_red">Red</option>
 								</optgroup>
 							</select>
 						</label>
@@ -149,6 +154,182 @@
 							<span>Directly to our members</span>
 						</label>
 
+					</li>
+
+
+
+				</ol>
+
+
+			</fieldset>
+		</div>
+		
+		
+		
+		
+		
+		<!-- BRANCH: MAILED - STEP 2: COPY AND QUANTITY - NEXT: MAIN/CONTACT -->
+		<div class="branch" id="mailed">
+			<fieldset class="step" data-state="contact">
+				<legend>Choose the printing style for your weekly envelopes</legend>
+				<ol>
+					<li>
+						<label for="mailedQty">Number of annual sets:</label>
+						<input type="number" min="10" step="1" name="mailedQty" id="mailedQty" value="100"/>
+					</li>
+
+					<li>
+						<span class="label">Ink Color:</span>
+						<label for="mailedInkBlack" class="three-radios">
+							<input type="radio" name="mailedInk" id="mailedInkBlack" value="black"/>
+							<span>Black ink only</span>
+						</label>
+						
+						<label for="mailedInkOneColor" class="three-radios">
+							<input type="radio" name="mailedInk" id="mailedInkOneColor" value="oneColor">
+							<span>One color ink</span>
+						</label>
+
+						<label for="mailedInkFullColor" class="three-radios">
+							<input type="radio" name="mailedInk" id="mailedInkFullColor" value="fullColor"/>
+							<span>Full color</span>
+						</label>
+						
+					</li>
+
+					<li>
+						<span class="label">Envelope Colors:</span>
+						<label for="mailedColor">
+							<select name="mailedColor" id="mailedColor">
+								<option value="white">Plain White Paper</option>
+								<optgroup label="Background Colors">
+									<option value="clouds_blue">Blue</option>
+									<option value="clouds_canary">Canary Yellow</option>
+									<option value="clouds_cherry">Cherry Red</option>
+									<option value="clouds_gold">Goldenrod</option>
+									<option value="clouds_gray">Gray</option>
+									<option value="clouds_green">Green</option>
+									<option value="clouds_pink">Pink</option>
+								</optgroup>
+								<optgroup label="Border Colors">
+									<option value="border_blue">Blue</option>
+									<option value="border_light_blue">Light Blue</option>
+									<option value="border_canary">Canary Yellow</option>
+									<option value="border_gold">Goldenrod</option>
+									<option value="border_gray">Gray</option>
+									<option value="border_green">Green</option>
+									<option value="border_pink">Pink</option>
+									<option value="border_purple">Purple</option>
+									<option value="border_red">Red</option>
+								</optgroup>
+							</select>
+						</label>
+					</li>
+					
+					<li>
+						<span class="label">Frequency:</span>
+							<div class="four-radios">
+								<label for="mailedFrequencyAnnual" class="two-radios">
+									<input type="radio" class="two-radios" name="mailedFrequency" id="mailedFrequencyAnnual" value="annual">
+									<span>Annually</span>
+								</label>
+								
+								<label for="mailedFrequencyQuarterly" class="two-radios">
+									<input type="radio" class="two-radios" name="mailedFrequency" id="mailedFrequencyQuarterly" value="quarterly">
+									<span>Quarterly</span>
+								</label>
+								
+								<label for="mailedFrequencyBiMonthly" class="two-radios">
+									<input type="radio" class="two-radios" name="mailedFrequency" id="mailedFrequencyBiMonthly" value="bi-monthly">
+									<span>Bi-monthly</span>
+								</label>
+								
+								<label for="mailedFrequencyMonthly" class="two-radios">
+									<input type="radio" class="two-radios" name="mailedFrequency" id="mailedFrequencyMonthly" value="monthly">
+									<span>Monthly</span>
+								</label>
+							</div>
+					</li>
+
+
+
+				</ol>
+
+
+			</fieldset>
+		</div>
+		
+		
+		
+		
+		
+		<!-- BRANCH: BOOKLET - STEP 2: FREQUENCY COPY AND QUANTITY - NEXT: MAIN/CONTACT -->
+		<div class="branch" id="booklet">
+			<fieldset class="step" data-state="contact">
+				<legend>Choose the printing style for your weekly envelopes</legend>
+				<ol>
+					<li>
+						<label for="bookletQty">Number of annual sets:</label>
+						<input type="number" min="10" step="1" name="bookletQty" id="bookletQty" value="100"/>
+					</li>
+
+					<li>
+						<span class="label">Ink Color:</span>
+						<label for="bookletInkBlack" class="three-radios">
+							<input type="radio" name="bookletInk" id="bookletInkBlack" value="black"/>
+							<span>Black ink only</span>
+						</label>
+						
+						<label for="bookletInkOneColor" class="three-radios">
+							<input type="radio" name="bookletInk" id="bookletInkOneColor" value="oneColor">
+							<span>One color ink</span>
+						</label>
+
+						<label for="bookletInkFullColor" class="three-radios">
+							<input type="radio" name="bookletInk" id="bookletInkFullColor" value="fullColor"/>
+							<span>Full color</span>
+						</label>
+						
+					</li>
+
+					<li>
+						<span class="label">Ship the sets:</span>
+						<label for="bookletShippingChurch" class="two-radios">
+							<input class="two-radios" type="radio" name="bookletShipping" id="bookletShippingChurch" value="church"/>
+							<span>To the church</span>
+						</label>
+
+						<label for="bookletShippingMembers" class="two-radios">
+							<input class="two-radios" type="radio" name="bookletShipping" id="bookletShippingMembers" value="members"/>
+							<span>Directly to our members</span>
+						</label>
+
+					</li>
+					
+					<li>
+						<span class="label">Frequency:</span>
+						
+						<div class="four-radios">
+							<label for="bookletFrequencyAnnual" class="two-radios">
+								<input type="radio" class="two-radios" name="bookletFrequency" id="bookletFrequencyAnnual" value="annual">
+								<span>Annually</span>
+							</label>
+							
+							<label for="bookletFrequencyQuarterly" class="two-radios">
+								<input type="radio" class="two-radios" name="bookletFrequency" id="bookletFrequencyQuarterly" value="quarterly">
+								<span>Quarterly</span>
+							</label>
+							
+							<label for="bookletFrequencyBiMonthly" class="two-radios">
+								<input type="radio" class="two-radios" name="bookletFrequency" id="bookletFrequencyBiMonthly" value="bi-monthly">
+								<span>Bi-monthly</span>
+							</label>
+							
+							<label for="bookletFrequencyMonthly" class="two-radios">
+								<input type="radio" class="two-radios" name="bookletFrequency" id="bookletFrequencyMonthly" value="monthly">
+								<span>Monthly</span>
+							</label>
+						</div>
 					</li>
 
 
@@ -178,7 +359,7 @@
 				
 				<li>
 					<label for="contactPhone">Contact Phone:</label>
-					<input required type="tel" name="contactPhone" id="contactPhone" value="" placeholder="5555551212"/>
+					<input class="required-contact" type="tel" name="contactPhone" id="contactPhone" value="" placeholder="5555551212"/>
 				</li>
 				
 				<li>
@@ -188,7 +369,7 @@
 				
 				<li>
 					<label for="contactEmail">Contact E-mail:</label>
-					<input required type="email" name="contactEmail" id="contactEmail" value="" placeholder="user@provider.com"/>
+					<input class="required-contact" type="email" name="contactEmail" id="contactEmail" value="" placeholder="user@provider.com"/>
 				</li>
 				
 				<li>
