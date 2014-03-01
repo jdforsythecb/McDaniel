@@ -2,7 +2,7 @@
 @import url('/css/normalize.css');
 
 /* import font declarations */
-@import url('/fonts/fonts.css');
+/*@import url('/fonts/fonts.css');*/
 
 /* global styles for header, footer, and placing the div#content
  * 
@@ -10,7 +10,8 @@
  * 
  */
 
-*, html {font-family:Verdana, Arial, Helvetica, sans-serif;}
+/**, html {font-family:Verdana, Arial, Helvetica, sans-serif;}*/
+*, html {font-family:'Trebuchet MS', Helvetica, Arial, sans-serif;}
 
 /* even after we normalize, set everything to have no margin or padding by default
  * to save headaches
