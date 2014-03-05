@@ -1,8 +1,10 @@
+#manual-contact .sec,
 #contact-box .sec {
 	width:600px;
 	margin:20px auto 0;
 }
 
+	#manual-contact .sec h3.ui-accordion-header,
 	#contact-box .sec h3.ui-accordion-header {
 		cursor:default;
 	}

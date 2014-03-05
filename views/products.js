@@ -23,8 +23,8 @@ $(document).ready(function() {
 	});
 	
 	
-	// bind click events to all sample images (li>imgs)
-	$("ul.product-samples>li>img").click(function(event) {
+	// bind click events to all sample images (li>imgs where we haven't set data-zoomable to false)
+	$("ul.product-samples>li>img:not([data-zoomable='false'])").click(function(event) {
 		var elmt = event.currentTarget,
 			w, h, title;
 		
@@ -44,9 +44,13 @@ $(document).ready(function() {
 				w = 250;
 				h = 473;
 			}
-			else {
+			else if ($(elmt).data("orientation") === "landscape") {
 				w = 473;
 				h = 250;
+			}
+			else if ($(elmt).data("orientation") === "square") {
+				w = 473;
+				h = 473;
 			}
 			
 			// set the title based on the alt attribute of the child img element

@@ -1,6 +1,6 @@
 #products-container {
-	width:90%;
-	margin:5%;
+	width:100%;
+	margin:3% 0;
 	text-align:center; /* float:center the inline-block div.product-sections */
 }
 
@@ -9,6 +9,7 @@
 		margin:0 15px 0 0;
 		display:inline-block; /* make float:center and still be fluid - fails IE 6/7 */
 		vertical-align:top; /* align the tops of the sections */
+		margin-bottom:3em;
 	}
 	
 	h3.ui-accordion-header {
@@ -45,6 +46,10 @@
 				.product-samples li img {
 					vertical-align:middle;
 				}
+				
+			.product-samples li.three-span {
+				width:460px;
+			}
 			
 
 
@@ -53,6 +58,10 @@
 #imageZoom {
 	text-align:center;
 }
+
+	span#ui-id-1 {
+		font-size:0.7em !important;
+	}
 
 
 
